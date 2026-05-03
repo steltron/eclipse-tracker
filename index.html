@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eclipse Tracker</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Eclipse Tracker</h1>
+      <div class="location-bar">
+        <span class="location-icon">&#9737;</span>
+        <span id="location-name">Loading location...</span>
+        <button id="change-location-btn" class="btn-text">Change</button>
+        <button id="settings-btn" class="btn-icon" title="Settings">&#9881;</button>
+      </div>
+      <div id="location-search" class="location-search hidden">
+        <input type="text" id="location-input" placeholder="City, State or latitude, longitude" />
+        <button id="location-search-btn" class="btn-small">Search</button>
+        <button id="location-cancel-btn" class="btn-small btn-cancel">Cancel</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="settings-panel" class="settings-panel hidden">
+    <h3>Calendar Invite Settings</h3>
+    <div class="email-list">
+      <div id="email-entries"></div>
+      <div class="email-add">
+        <input type="email" id="new-email-input" placeholder="Add email address" />
+        <button id="add-email-btn" class="btn-small">+ Add</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="countdown-bar" id="countdown-bar"></div>
+
+  <nav class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="solar">Solar</button>
+    <button class="filter-btn" data-filter="lunar">Lunar</button>
+    <button class="filter-btn" data-filter="travel">Travel-worthy</button>
+  </nav>
+
+  <main>
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Computing eclipses for the next 30 years...</p>
+    </div>
+    <div id="eclipse-list" class="eclipse-list"></div>
+    <div id="empty-state" class="empty-state hidden">
+      <p>No eclipses match the current filter.</p>
+    </div>
+  </main>
+
+  <div id="map-modal" class="modal hidden">
+    <div class="modal-header">
+      <h2 id="map-title">Eclipse Map</h2>
+      <button id="map-close-btn" class="btn-close">&times;</button>
+    </div>
+    <div id="map-container"></div>
+  </div>
+
+  <footer>
+    <p>Eclipse data computed client-side using <a href="https://github.com/cosinekitty/astronomy" target="_blank" rel="noopener">astronomy-engine</a>. Path data from <a href="https://eclipse.gsfc.nasa.gov/" target="_blank" rel="noopener">NASA</a>.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

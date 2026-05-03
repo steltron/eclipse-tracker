@@ -1,0 +1,550 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #f59e0b;
+  --gold-dark: #b45309;
+  --orange: #f97316;
+  --red: #dc2626;
+  --red-muted: #9f1239;
+  --indigo: #6366f1;
+  --navy: #0f172a;
+  --navy-light: #1e293b;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-800: #1e293b;
+  --green: #16a34a;
+  --yellow: #ca8a04;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--gray-50);
+  color: var(--gray-800);
+  line-height: 1.5;
+}
+
+header {
+  background: var(--navy);
+  color: white;
+  padding: 1rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.location-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--gray-200);
+}
+
+.location-icon { font-size: 1.2rem; }
+
+#location-name { font-weight: 500; }
+
+.btn-text {
+  background: none;
+  border: none;
+  color: var(--gold);
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-decoration: underline;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  color: var(--gray-400);
+  cursor: pointer;
+  font-size: 1.3rem;
+  margin-left: auto;
+}
+
+.btn-icon:hover { color: white; }
+
+.location-search {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.location-search input {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--gray-400);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.btn-small {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.btn-cancel {
+  background: var(--gray-500);
+  color: white;
+}
+
+.hidden { display: none !important; }
+
+/* Settings Panel */
+.settings-panel {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  background: var(--gray-100);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.settings-panel h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: var(--gray-600);
+}
+
+.email-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+.btn-remove {
+  background: none;
+  border: none;
+  color: var(--red);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0 0.3rem;
+}
+
+.email-add {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.email-add input {
+  flex: 1;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+/* Countdown Bar */
+.countdown-bar {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  background: var(--navy-light);
+  color: var(--gray-200);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.countdown-bar strong { color: var(--gold); }
+
+/* Filter Bar */
+.filter-bar {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  background: white;
+  border-bottom: 1px solid var(--gray-200);
+  position: sticky;
+  top: 70px;
+  z-index: 99;
+}
+
+.filter-btn {
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  transition: all 0.15s;
+}
+
+.filter-btn:hover { border-color: var(--gray-400); }
+
+.filter-btn.active {
+  background: var(--navy);
+  color: white;
+  border-color: var(--navy);
+}
+
+/* Main content */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 3rem;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--gray-500);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--gray-200);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--gray-400);
+  font-size: 1.1rem;
+}
+
+/* Eclipse Cards */
+.eclipse-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.eclipse-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--gray-200);
+  border-left: 4px solid var(--gray-200);
+  transition: box-shadow 0.15s;
+}
+
+.eclipse-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Solar eclipse types */
+.eclipse-solar.eclipse-total {
+  border-left-color: var(--gold);
+}
+
+.eclipse-solar.eclipse-annular {
+  border-left-color: var(--orange);
+}
+
+.eclipse-solar.eclipse-partial {
+  border-left-color: var(--gray-400);
+}
+
+/* Highlighted total solar nearby */
+.eclipse-highlight {
+  border-left-width: 6px;
+  border-left-color: var(--gold);
+  background: linear-gradient(135deg, #fffbeb 0%, white 40%);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.15);
+}
+
+.eclipse-highlight .card-type { color: var(--gold-dark); font-weight: 700; }
+
+/* Lunar */
+.eclipse-lunar.eclipse-total {
+  border-left-color: var(--red);
+}
+
+.eclipse-lunar.eclipse-partial {
+  border-left-color: var(--red-muted);
+}
+
+.eclipse-highlight-lunar {
+  border-left-width: 6px;
+  border-left-color: var(--red);
+  background: linear-gradient(135deg, #fef2f2 0%, white 40%);
+}
+
+/* Muted cards */
+.eclipse-muted {
+  opacity: 0.7;
+}
+
+.eclipse-muted .card-header { font-size: 0.9rem; }
+
+.eclipse-dim {
+  opacity: 0.55;
+}
+
+.eclipse-past {
+  opacity: 0.4;
+}
+
+/* Card layout */
+.card-body {
+  display: flex;
+  gap: 1rem;
+}
+
+.card-info { flex: 1; min-width: 0; }
+
+.card-diagram {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0.25rem;
+}
+
+.eclipse-diagram { display: block; }
+
+/* Card parts */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.card-type {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.card-date {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--gray-800);
+}
+
+.card-time {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  margin-bottom: 0.4rem;
+}
+
+.card-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  margin-bottom: 0.5rem;
+}
+
+.detail {
+  background: var(--gray-100);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+.card-path {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+
+/* Badges */
+.card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+}
+
+.badge-total {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.badge-distance { color: white; }
+.dist-home { background: var(--green); }
+.dist-short { background: #22c55e; }
+.dist-road { background: var(--yellow); }
+.dist-flight { background: var(--gray-500); }
+.dist-far { background: var(--gray-400); color: var(--gray-800); }
+.dist-unknown { background: var(--gray-200); color: var(--gray-600); }
+
+.badge-visible { background: #dbeafe; color: #1d4ed8; }
+.badge-not-visible { background: var(--gray-100); color: var(--gray-500); }
+
+/* Weather badge */
+.weather-badge {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+}
+
+.weather-label { font-weight: 600; }
+.weather-detail { font-size: 0.7rem; opacity: 0.85; }
+
+.weather-good { background: #dcfce7; color: #166534; }
+.weather-fair { background: #fef9c3; color: #854d0e; }
+.weather-poor { background: #fed7aa; color: #9a3412; }
+.weather-bad { background: #fecaca; color: #991b1b; }
+
+/* Card actions */
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn {
+  padding: 0.4rem 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+
+.btn-calendar {
+  background: var(--indigo);
+  color: white;
+}
+
+.btn-calendar:hover { background: #4f46e5; }
+
+.btn-map {
+  background: var(--gray-100);
+  color: var(--gray-800);
+  border: 1px solid var(--gray-200);
+}
+
+.btn-map:hover { background: var(--gray-200); }
+
+/* Map Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  background: var(--navy);
+  color: white;
+}
+
+.modal-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+#map-container {
+  flex: 1;
+}
+
+.distance-tooltip {
+  background: rgba(99, 102, 241, 0.85);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.lunar-info-panel {
+  background: white;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  max-width: 280px;
+}
+
+.lunar-info-panel em {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+/* Footer */
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--gray-400);
+}
+
+footer a {
+  color: var(--gray-500);
+}
+
+/* Responsive */
+@media (min-width: 640px) {
+  .eclipse-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .eclipse-highlight, .eclipse-highlight-lunar {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 { font-size: 1.2rem; }
+  .filter-bar { overflow-x: auto; }
+  .card-details { gap: 0.4rem; }
+}
